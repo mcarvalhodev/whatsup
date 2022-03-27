@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Poppins:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.root {
+body {
+  font-family: 'Montserrat';
+}
+
+#root {
   display: flex;
   justify-content: center;
 }
@@ -12,7 +18,6 @@
 .container {
   max-width: 600px;
   height: 100vh;
-  border: 1px solid black;
   flex: 1 1 0%;
   flex-direction: column;
   display: flex;
@@ -23,18 +28,21 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 20px;
+  padding: 2.5em;
+  overflow-y: scroll;
+  background-image: url(./images/wallpaper.png);
 }
 
 .input-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr 75px;
+  gap: 10px;
+  height: 60px;
+  padding: 10px;
+  background-color: #f0f2f5;
 }
 
-.input-container .user {
-  width: 100px;
-}
-
-.input-container .message {
-  flex: 1 1 0%;
+input:focus {
+  outline: none;
 }
 
