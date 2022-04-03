@@ -1,8 +1,12 @@
-import "./App.css";
+import "./css/main.css";
 import React from "react";
 import Message from "./components/Message/Message";
 
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
+
 import styled from "styled-components";
+import Balloon from "./components/Balloon/Balloon";
 
 const SendButton = styled.button`
   border: none;
@@ -69,13 +73,43 @@ class App extends React.Component {
   };
 
   render() {
-    const messages = this.state.messages.map((msg) => {
-      return <Message nome={msg.usuario} conteudo={msg.mensagem}></Message>;
+    const messages = this.state.messages.map((msg, index) => {
+      return (
+        <Message
+          key={index}
+          nome={msg.usuario}
+          conteudo={msg.mensagem}
+        ></Message>
+      );
     });
 
     return (
-      <div className="container">
-          <div className="chat-container">{messages}</div>
+      <div className="livechat">
+        <div className="content">
+          <SimpleBar className="chat">
+            {this.state.messages.map((message, index) => {
+              return <Balloon key={index} message={message} />;
+            })}
+          </SimpleBar>
+          <div className="send-container">
+            <input
+              type={"text"}
+              placeholder="Your name..."
+              value={this.state.valorInputUsuario}
+              onChange={this.onChangeInputUsuario}
+            />
+            <input
+              type={"text"}
+              placeholder="Your message..."
+              value={this.state.valorInputMensagem}
+              onChange={this.onChangeInputMensagem}
+              onKeyUp={this.onEnterSendMessage}
+            />
+            <input type={"submit"} value="Send" onClick={this.sendMessage} />
+          </div>
+        </div>
+
+        {/* <SimpleBar className="chat-container">{messages}</SimpleBar>
         <div className="input-container">
           <Usuario
             type="text"
@@ -93,7 +127,7 @@ class App extends React.Component {
             onKeyUp={this.onEnterSendMessage}
           />
           <SendButton onClick={this.sendMessage}>Send</SendButton>
-        </div>
+        </div> */}
       </div>
     );
   }

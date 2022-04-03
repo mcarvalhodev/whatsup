@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital@0;1&family=Poppins:wght@400;700&display=swap");
+body {
+  margin: 0;
+  font-family: "Montserrat";
+  background: #ebebeb;
+}
+
+.livechat {
+  background: white;
+  width: 75%;
+  max-width: 600px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.livechat .content {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: inherit;
+  padding: 1em;
+}
+
+.livechat .content .simplebar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+}
+
+.livechat .chat {
+  height: inherit;
+}
+
+.livechat .balloon p.name {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: bold;
+  color: #5200ff;
+}
+
+.livechat .balloon p.message {
+  margin-bottom: 1.5em;
+}
+
+.livechat .send-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 20% auto 20%;
+      grid-template-columns: 20% auto 20%;
+  margin: 1em 0 0.5em;
+}
+
+.livechat .send-container input[type="text"] {
+  padding: 1em;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.livechat .send-container input[type="text"]:nth-child(1) {
+  border-top-left-radius: 0.7em;
+  border-bottom-left-radius: 0.7em;
+}
+
+.livechat .send-container input[type="submit"] {
+  padding: 1em;
+  background: #5200ff;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-top-right-radius: 0.7em;
+  border-bottom-right-radius: 0.7em;
+}
+/*# sourceMappingURL=main.css.map */

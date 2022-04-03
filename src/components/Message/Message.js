@@ -70,14 +70,14 @@ class Message extends React.Component {
     const nome = this.props.nome.toLowerCase();
     if (nome === "eu") {
       return (
-        <BalaoMensagem tipo={"eu"}>
-          {this.props.conteudo}
+        <BalaoMensagem tipo={"eu"} key={this.props.index}>
+          {this.props.conteudo} 
           <DoubleCheck src={doublecheck} />
         </BalaoMensagem>
       );
     } else {
       return (
-        <BalaoMensagem tipo={"outro"}>
+        <BalaoMensagem tipo={"outro"} key={this.props.index}>
           <Nome>{this.props.nome}</Nome>
           <div>{this.props.conteudo}</div>
         </BalaoMensagem>
