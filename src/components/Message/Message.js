@@ -8,7 +8,7 @@ const BalaoMensagem = styled.div`
   word-wrap: break-word;
   padding: 0.3em 0.8em;
   border-radius: 0.5em;
-  margin: 0.2em 0;
+  margin: 0.2em 2em;
   line-height: 1.3;
   font-weight: 450;
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);

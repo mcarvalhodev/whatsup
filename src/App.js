@@ -1,6 +1,5 @@
 import "./css/main.css";
 import React from "react";
-import Message from "./components/Message/Message";
 
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
@@ -8,36 +7,24 @@ import "simplebar/dist/simplebar.min.css";
 import styled from "styled-components";
 import Balloon from "./components/Balloon/Balloon";
 
-const SendButton = styled.button`
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  font-weight: bold;
-  cursor: pointer;
-`;
+import messageList from "./messages.json";
 
-const Usuario = styled.input`
-  width: 100px;
-  padding: 5px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-`;
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Mensagem = styled.input`
-  flex: 1 1 0%;
-  padding: 8px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-`;
+import chatList from "./MOCK_DATA.json";
 
 class App extends React.Component {
   state = {
-    messages: [],
+    messages: messageList,
+    chatList: chatList,
 
     valorInputUsuario: "",
     valorInputMensagem: "",
+    inputSearch: "",
   };
 
   sendMessage = () => {
@@ -72,21 +59,86 @@ class App extends React.Component {
     this.setState({ valorInputMensagem: event.target.value });
   };
 
-  render() {
-    const messages = this.state.messages.map((msg, index) => {
-      return (
-        <Message
-          key={index}
-          nome={msg.usuario}
-          conteudo={msg.mensagem}
-        ></Message>
-      );
-    });
+  onChangeInputSearch = (event) => {
+    this.setState({ inputSearch: event.target.value });
+  };
 
+  render() {
     return (
       <div className="livechat">
+        <div className="side">
+          <div className="search-bar">
+            <div className="search-input">
+              <button>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+              <input
+                type="text"
+                placeholder="Pesquisar"
+                value={this.inputSearch}
+                onChange={this.onChangeInputSearch}
+              />
+            </div>
+          </div>
+          <div className="chat-list">
+            {this.state.chatList
+              .filter((chat) => {
+                return this.state.inputSearch === ""
+                  ? true
+                  : chat.name.includes(this.state.inputSearch);
+              })
+              .map((chat) => {
+                return (
+                  <div className="chat-item">
+                    <img
+                      className="status"
+                      src={require("./images/sbt.png")}
+                      alt={"SBT"}
+                    ></img>
+                    <div className="info">
+                      <div className="title">
+                        <h4 className="name">{chat.name}</h4>
+                        <p className="last-seen">{chat.lastSeen}</p>
+                      </div>
+                      <div className="subtitle">
+                        <p className="last-message">{chat.lastMessage}</p>
+                        <div className="unread-message-count">
+                          {chat.unread}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="last"></p>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
         <div className="content">
-          <SimpleBar className="chat">
+          <header>
+            <div className="chat-info">
+              <img
+                className="status"
+                src={require("./images/sbt.png")}
+                alt={"SBT"}
+              ></img>
+              <div className="info">
+                <h4>SBT</h4>
+                <p>last seen recently</p>
+              </div>
+            </div>
+            <div className="tools">
+              <button>
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={faPhone} />
+              </button>
+              <button>
+                <FontAwesomeIcon icon={faEllipsisV} />
+              </button>
+            </div>
+          </header>
+          <SimpleBar className="chat" data-simplebar-auto-hide="false">
             {this.state.messages.map((message, index) => {
               return <Balloon key={index} message={message} />;
             })}
@@ -105,7 +157,10 @@ class App extends React.Component {
               onChange={this.onChangeInputMensagem}
               onKeyUp={this.onEnterSendMessage}
             />
-            <input type={"submit"} value="Send" onClick={this.sendMessage} />
+            {/* <input type={"submit"} value="Send" onClick={this.sendMessage} /> */}
+            <button>
+              <FontAwesomeIcon icon={faMicrophone} />
+            </button>
           </div>
         </div>
 
